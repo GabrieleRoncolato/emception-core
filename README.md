@@ -1,2 +1,2 @@
 # emception-core
-npm package for Emception
+This is a WIP repository for an emception npm package with the core functionalities.
