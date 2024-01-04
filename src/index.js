@@ -30,6 +30,6 @@ import Python3Process from "./modules/Python3Process.mjs";
 import NodeProcess from "./modules/QuickNodeProcess.mjs";
 
 import importBrotliFile from "./modules/root_pack.mjs";
-//import lazy_cache from "emception/lazy-cache/index.mjs";
+import lazy_cache from "./modules/dependencies/lazy-cache/index.mjs";
 
 const rootPackPath = importBrotliFile('./modules/dependencies/root.pack.br');
