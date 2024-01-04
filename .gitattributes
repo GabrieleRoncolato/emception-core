@@ -1,0 +1,2 @@
+src/modules/dependencies/root.pack filter=lfs diff=lfs merge=lfs -text
+src/modules/dependencies/root.pack.br filter=lfs diff=lfs merge=lfs -text
