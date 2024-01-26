@@ -1,9 +1,4 @@
 /*
-import * as Comlink from "comlink";
-//import EmceptionWorker from "./emception.worker.js";
-
-const emception = Comlink.wrap(new EmceptionWorker());
-
 
 export const compile = async () => {
     try {
@@ -148,9 +143,4 @@ class Emception{
     };
 }
 
-const emception = new Emception();
-
-/*
-globalThis.emception = emception;
-Comlink.expose(emception);
- */
+export default Emception;

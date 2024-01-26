@@ -1,14 +1,14 @@
 {
   "name": "@gabrieleroncolato/emception-core",
-  "version": "1.0.0",                     
+  "version": "1.1.5",
   "type": "module",
-  "source": "src/index.js",            
+  "source": "src/index.js",
   "main": "dist/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
   "scripts": {
-    "build": "microbundle",           
-    "dev": "microbundle watch"        
+    "build": "microbundle",
+    "dev": "microbundle watch"
   },
   "devDependencies": {
     "microbundle": "^0.15.1"
@@ -16,5 +16,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GabrieleRoncolato/emception-core.git"
+  },
+  "dependencies": {
+    "brotli-wasm": "^2.0.1"
   }
 }
