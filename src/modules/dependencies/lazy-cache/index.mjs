@@ -281,14 +281,15 @@ let lazyCacheArray = [
     ["./cache/sysroot/lib/wasm32-emscripten/libwebgpu_cpp.a",194914,"34452a5b064239d69ec3888972959c3b",""],
 ];
 
-async function get_files_url(array, baseUrl)
+async function get_files_url(array, cacheUrl)
 {
     array.forEach(element => {
-        element[3] = `${baseUrl}/${element[2]}.a`;
+        element[3] = `${cacheUrl}/${element[2]}.a`;
     });
 }
 
-baseUrl = "http://localhost:3000/static_lib/lazy_cache"
 
-get_files_url(lazyCacheArray, baseUrl);
+let lazyCacheUrl = "http://localhost:3000/static_lib/lazy_cache";
+
+get_files_url(lazyCacheArray, lazyCacheUrl);
 export default lazyCacheArray;
