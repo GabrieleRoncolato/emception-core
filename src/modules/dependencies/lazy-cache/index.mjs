@@ -1,4 +1,4 @@
-let potato = [
+let lazyCacheArray = [
     ["./cache/sysroot/lib/wasm32-emscripten/libGL-emu-full_es3.a",89856,"67e272a1c11015f9a41f297dec1e7acd", ""],
     ["./cache/sysroot/lib/wasm32-emscripten/libGL-emu-ofb-full_es3.a",89856,"67e272a1c11015f9a41f297dec1e7acd", ""],
     ["./cache/sysroot/lib/wasm32-emscripten/libGL-emu-ofb.a",58514,"78672ab9ca77e30e7612a8b69d1e646a", ""],
@@ -281,27 +281,14 @@ let potato = [
     ["./cache/sysroot/lib/wasm32-emscripten/libwebgpu_cpp.a",194914,"34452a5b064239d69ec3888972959c3b",""],
 ];
 
-import * as fs from 'fs';
-
-import brotliPromise from 'brotli-wasm';
-
-function decompressFile(brotli, inputPath, outputPath)
+async function get_files_url(array, baseUrl)
 {
-    const compressedData = fs.readFileSync(inputPath);
-    const decompressedData = brotli.decompress(compressedData);
-    fs.writeFileSync(outputPath, decompressedData);
-    return decompressedData;
-}
-
-async function decompressFilesLoop(array)
-{
-    const brotli = await brotliPromise;
-
     array.forEach(element => {
-        let decompressData = decompressFile(brotli, element[0], element[2]);
-        element[3] = decompressData;
+        element[3] = `${baseUrl}/${element[2]}.a`;
     });
 }
 
-decompressFilesLoop(potato);
-export default potato;
+baseUrl = "http://localhost:3000/static_lib/lazy_cache"
+
+get_files_url(lazyCacheArray, baseUrl);
+export default lazyCacheArray;

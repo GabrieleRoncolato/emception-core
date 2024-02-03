@@ -17,6 +17,7 @@ export const compile = async () => {
 }
 */
 
+
 import FileSystem from "./modules/FileSystem.mjs";
 
 import LlvmBoxProcess from "./modules/LlvmBoxProcess.mjs";
@@ -24,10 +25,10 @@ import BinaryenBoxProcess from "./modules/BinaryenBoxProcess.mjs";
 import Python3Process from "./modules/Python3Process.mjs";
 import NodeProcess from "./modules/QuickNodeProcess.mjs";
 
-import importBrotliFile from "./modules/root_pack.mjs";
 import lazy_cache from "./modules/dependencies/lazy-cache/index.mjs";
+import get_root_url from "./modules/root_pack.mjs";
 
-const rootPackPath = importBrotliFile('./modules/dependencies/root.pack.br');
+const root_pack = get_root_url('http://localhost:3000/static_lib/root_pack/root.pack.br');
 
 class Emception{
     
@@ -35,6 +36,9 @@ class Emception{
     tools = {};
 
     async init() {
+        console.log(root_pack);
+        console.log(lazy_cache);
+
         const fileSystem = await new FileSystem();
         this.fileSystem = fileSystem;
 
