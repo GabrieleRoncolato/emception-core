@@ -147,4 +147,4 @@ class Emception{
     };
 }
 
-module.exports = Emception;
+export default Emception;
