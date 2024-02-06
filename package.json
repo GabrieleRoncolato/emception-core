@@ -1,6 +1,6 @@
 {
   "name": "@gabrieleroncolato/emception-core",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "type": "module",
   "source": "src/index.js",
   "main": "dist/index.js",
@@ -16,10 +16,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GabrieleRoncolato/emception-core.git"
-  },
-  "dependencies": {
-    "brotli-wasm": "^2.0.1",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7"
   }
 }
