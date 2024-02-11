@@ -107,7 +107,6 @@ export default class EmProcess extends Process {
         this._print = (...args) => {
             this.onprint(...args);
             opts.print && opts.print(...args);
-            console.log("test1");
             stdout.push(...args);
         };
         this._printErr = (...args) => {

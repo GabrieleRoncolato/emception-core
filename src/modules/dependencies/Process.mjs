@@ -1,14 +1,14 @@
 export default class Process {
     constructor({
         onrunprocess = () => ({ returncode: 1, stdout: "", stderr: "Not implemented" }),
-        onprint = () => { console.log("test2"); },
+        onprint = () => {},
         onprintErr = () => {},
     }) {
         Object.assign(this, { onrunprocess, onprint, onprintErr });
     }
 
     onrunprocess = () => {};
-    onprint = () => { console.log("test3"); };
+    onprint = () => {};
     onprintErr = () => {};
 
     get FS() {
