@@ -9,38 +9,27 @@ export default function createLazyFile(FS, parent, name, datalength, url, canRea
     }
     LazyUint8Array.prototype.cacheLength = function LazyUint8Array_cacheLength() {
         // Function to get a range from the remote URL.
-        var doXHR = async () => {
-            return new Promise((resolve, reject) => {
-                // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available.
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', url, true);
+        var doXHR = () => {
+            // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available.
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, false);
 
-                // Some hints to the browser that we want binary data.
-                xhr.responseType = 'arraybuffer';
-                if (xhr.overrideMimeType) {
-                    xhr.overrideMimeType('text/plain; charset=x-user-defined');
-                }
+            // Some hints to the browser that we want binary data.
+            xhr.responseType = 'arraybuffer';
+            if (xhr.overrideMimeType) {
+                xhr.overrideMimeType('text/plain; charset=x-user-defined');
+            }
 
-                xhr.onload = () => {
-                    if (!(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304)) 
-                        throw new Error("Couldn't load " + url + ". Status: " + xhr.status);
-                    
-                    if (xhr.response !== undefined) {
-                        resolve(new Uint8Array(/** @type{Array<number>} */(xhr.response || [])));
-                    }
-
-                    resolve(intArrayFromString(xhr.responseText || '', true));
-                };
-
-                xhr.onerror = () => reject(new Error("Network error")); // Reject the promise on network errors
-                xhr.ontimeout = () => reject(new Error("Request timed out")); 
-
-                xhr.send(null);
-            });
+            xhr.send(null);
+            if (!(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304)) throw new Error("Couldn't load " + url + ". Status: " + xhr.status);
+            if (xhr.response !== undefined) {
+                return new Uint8Array(/** @type{Array<number>} */(xhr.response || []));
+            }
+            return intArrayFromString(xhr.responseText || '', true);
         };
-        this.get = async () => {
+        this.get = () => {
             if (!this.content) {
-                this.content = await doXHR();
+                this.content = doXHR();
                 if (onloaded && this.content) {
                     onloaded(this.content);
                 }
